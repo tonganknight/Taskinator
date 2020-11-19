@@ -317,11 +317,69 @@ tasks = updatedTaskArr;
 
     }
 
-    var saveTasks = function() { //added
+  var saveTasks = function() { //added
 
       localStorage.setItem("tasks", JSON.stringify(tasks));
 
     }
+
+    function loadTasks(){
+
+      // get data from the storage 
+
+      var tasks = localStorage.tasks
+
+     
+
+      //convert data back into an object 
+
+      tasks = JSON.parse(tasks);
+
+      
+
+      for(i=0; i<tasks.length;){
+         
+        tasks.id = taskIdCounter
+        
+        var listItemE1 = document.createElement("li");
+
+        listItemE1.className ="task-item";
+        listItemE1.setAttribute("data-task-id",tasks[i].id );
+        listItemE1.setAttribute("draggable", true);
+
+        console.log(listItemE1)
+
+        var taskInfoE1 =document.createElement("div")
+        taskInfoE1.className ="task-info"
+        taskInfoE1.innerHTML = "<h3 class='task-name'>" + tasks[i].name + "</h3><span class='task-type'>" + tasks[i].type + "</span>";
+
+        taskInfoE1.appendChild.listItemE1
+
+        var taskActionsEl = createTaskActions(tasks[i].id)
+
+        taskActionsEl.appendChild.listItemE1;
+
+
+        console.log(listItemE1)
+
+        if(tasks[i].status ==="complete"){
+
+          listItemEl.querySelector("select[name='status-change']").selectedIndex = 2
+
+            listItemE1.appendChild.tasksCompletedEl
+        
+        
+
+          
+
+        }
+
+        i++
+
+      }}
+        
+        
+  
 
   pageContentEl.addEventListener("dragleave", dragLeaveHandler);
 
@@ -337,4 +395,4 @@ tasks = updatedTaskArr;
 
   pageContentEl.addEventListener("drop", dropTaskHandler); // maybe needs to be at top
 
-
+  loadTasks()
